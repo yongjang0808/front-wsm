@@ -4,15 +4,21 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
-
+import PostList from '../components/post/PostList';
+import AreaList from '../area/AreaList';
+import SearchBar from '../components/common/UI/searchBar';
+import SearchIcon from '@mui/icons-material/Search';
 const post = {
-    title: 'Title of a longer featured blog post',
+    title: '우리끼리',
     description:
-      "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-    image: process.env.PUBLIC_URL + "/assets/images/MainPage/banner/woori_main.jpg",
+      "나눔 WON해",
+    image: process.env.PUBLIC_URL + "/assets/images/MainPage/banner/IU.png",
     imageText: 'main image description',
-    linkText: 'Continue reading…',
+    maxWidth: '100%',
+    
   };
+
+
   
 
 const MainPage = () => {
@@ -22,7 +28,7 @@ const MainPage = () => {
     <Box
       sx={{
         bgcolor: 'background.paper',
-        pt: 8,
+        pt: 1,
         pb: 6,
       }}
     >
@@ -30,15 +36,16 @@ const MainPage = () => {
       <Paper
         sx={{
           position: 'relative',
-          backgroundColor: 'grey.800',
+          backgroundColor: '#03a9f4',
           color: '#fff',
-          mb: 4,
-          backgroundSize: 'cover',
+          mb: 1,
+          backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
+          backgroundPosition: '20%',
           backgroundImage: `url(${post.image})`,
         }}
       >
+         
         {/* Increase the priority of the hero background image */}
         {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
         <Box
@@ -51,12 +58,12 @@ const MainPage = () => {
             backgroundColor: 'rgba(0,0,0,.3)',
           }}
         />
-        <Grid container>
-          <Grid item md={6}>
-            <Box
+        <Grid container columns={{ xs: 2, sm: 3, md: 8 }}>
+          <Grid item md={4} xs={1} sm={1}container >
+            <Box md={4} xs={1} sm={1}
               sx={{
                 position: 'relative',
-                p: { xs: 3, md: 6 },
+                p: { xs: 1, md: 4 },
                 pr: { md: 0 },
               }}
             >
@@ -71,10 +78,31 @@ const MainPage = () => {
               </Link>
             </Box>
           </Grid>
+          <Grid item md={4} xs={1} sm={1} container >
+            <Box 
+              sx={{
+                position: 'relative',
+                // p: { xs: 1, md: 3 },
+                // pr: { md:0},
+              }}
+            >
+              <SearchBar ></SearchBar> 
+            </Box>
+          </Grid>
         </Grid>
       </Paper>
     </Container>
     </Box>
+    <Container>
+    <Typography variant='h4' color="blue" fontWeight={'bold'}>
+      지역별 마켓 둘러보기
+    </Typography>
+    </Container>
+    < Container maxWidth='lg' sx={{py:8}}>
+      <Box sx={{height:'10%'}}>
+      <AreaList></AreaList>
+      </Box>
+    </Container>
     </main>
   );
 }
